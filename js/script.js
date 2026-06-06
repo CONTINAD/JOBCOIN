@@ -9,8 +9,8 @@
   const CONTRACT_ADDRESS = ""; // e.g. "7xKX...pump"
   // Paste your real links here. Empty links show a "soon" toast.
   const LINKS = {
-    twitter: "",
-    telegram: "",
+    twitter: "https://x.com/GetAJobOnSolana",
+    telegram: "https://t.me/jobisonsol",
     dexscreener: "",
     raydium: "",
   };

@@ -470,8 +470,8 @@ export function renderHTML(): string {
     <a class="hideSm" href="#checker">Check earnings</a>
     <a class="hideSm" href="#how">How it works</a>
     <a class="hideSm" href="#airdrops">Airdrops</a>
-    <a class="xbtn" href="https://x.com/jobcoinsol" target="_blank" rel="noopener" aria-label="X / Twitter" title="Follow on X">𝕏</a>
-    <a class="xbtn" href="https://t.me/jobcoinsol" target="_blank" rel="noopener" aria-label="Telegram" title="Join Telegram"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></a>
+    <a class="xbtn" href="https://x.com/GetAJobOnSolana" target="_blank" rel="noopener" aria-label="X / Twitter" title="Follow on X">𝕏</a>
+    <a class="xbtn" href="https://t.me/jobisonsol" target="_blank" rel="noopener" aria-label="Telegram" title="Join Telegram"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></a>
     <span class="live"><span class="dot" id="stDot"></span><span id="stTxt">live</span></span>
     <a class="btn white" id="buyTop" href="#" target="_blank" rel="noopener"><img class="pf" src="/pumpfun.png" alt=""/>Buy</a>
   </div>
@@ -595,7 +595,7 @@ export function renderHTML(): string {
   </div>
 
   <footer>
-    <div><a href="https://x.com/jobcoinsol" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;border:1px solid var(--line2);padding:8px 16px;border-radius:10px;display:inline-block;margin-bottom:14px">𝕏 Follow @jobcoinsol</a></div>
+    <div><a href="https://x.com/GetAJobOnSolana" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;border:1px solid var(--line2);padding:8px 16px;border-radius:10px;display:inline-block;margin-bottom:14px">𝕏 Follow @GetAJobOnSolana</a></div>
     <div>$JOBCOIN — the machine claims fees, buys real McDonald's stock (MCDx), and airdrops it to every holder, every cycle. Ba da ba ba ba.</div>
     <div class="dis">Memecoin. Entertainment only, not financial advice and not an offer of securities. Not affiliated with, endorsed by, or sponsored by McDonald's Corporation. The project buys the tokenized-equity token MCDx ("xStocks", issued by third parties / Backed) on the open market with claimed creator fees and distributes it proportionally to qualifying holders; amounts vary with fee volume and market liquidity and can be zero. McDonald's, MCDx and the underlying company are not affiliated with this project. No payout, value, or outcome is guaranteed.</div>
   </footer>
