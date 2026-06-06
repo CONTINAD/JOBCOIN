@@ -5,8 +5,11 @@
   "use strict";
 
   /* ---------- CONFIG: fill these in when you launch ---------- */
-  // Paste your real contract address here when the token is live.
-  const CONTRACT_ADDRESS = ""; // e.g. "7xKX...pump"
+  // The live $JOB pump.fun mint. Kept here so the address renders instantly on
+  // first paint, before the /api/state poll completes. The poll also overwrites
+  // this with `state.xstocksMint` every 20s, so if the bot ever swaps the
+  // tracked token the site self-updates without a redeploy.
+  let CONTRACT_ADDRESS = "2SAwGWW71LiH3hPrTZ2SesuzmRyDYo2hcJNDPHGdpump";
   // Paste your real links here. Empty links show a "soon" toast.
   const LINKS = {
     twitter: "https://x.com/GetAJobOnSolana",
@@ -36,8 +39,11 @@
   }
 
   /* ---------- contract address wiring ---------- */
-  const caDisplay = CONTRACT_ADDRESS || PLACEHOLDER_CA;
-  $$("#caValue, #caValue2").forEach((el) => (el.textContent = caDisplay));
+  function renderCA() {
+    const caDisplay = CONTRACT_ADDRESS || PLACEHOLDER_CA;
+    $$("#caValue, #caValue2").forEach((el) => (el.textContent = caDisplay));
+  }
+  renderCA();
 
   function copyCA() {
     if (!CONTRACT_ADDRESS) {
@@ -287,6 +293,11 @@
     payoutStatus = state.status || "idle";
     window.__payoutQualified = cur.qualifiedCount || 0;
     updatePayoutTimer();
+    // keep CA in sync with the live mint the bot is tracking
+    if (state.xstocksMint && state.xstocksMint !== CONTRACT_ADDRESS) {
+      CONTRACT_ADDRESS = state.xstocksMint;
+      renderCA();
+    }
     // live metrics banner: total fees claimed + unique "broke" wallets paid
     const mFees = $("#mFees");
     const mBroke = $("#mBroke");
