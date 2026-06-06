@@ -60,6 +60,7 @@
   <nav class="nav__links" id="navLinks">
     <a href="#cope">The Cope</a>
     <a href="#menu">The Menu</a>
+    <a href="#earnings">Earnings</a>
     <a href="#tokenomics">Tokenomics</a>
     <a href="#career">Career Path</a>
     <a href="#buy">How to Buy</a>
@@ -213,6 +214,35 @@
     </article>
   </div>
   <p class="menu__disclaimer">* Tickers shown are jokes. You will not receive McDonald's stock, a McFlurry, or financial stability. You will receive $JOB.</p>
+</section>
+
+<!-- ================= CHECK YOUR EARNINGS ================= -->
+<section class="section earn" id="earnings">
+  <div class="section__head reveal">
+    <span class="kicker">The Paycheck — Real MCDx</span>
+    <h2 class="section__title">Check Your <span class="hl">Earnings</span> 🍔</h2>
+    <p class="section__lead">Hold <strong>500,000+ $JOB</strong> and the machine airdrops you real McDonald's stock (<strong>MCDx</strong>) every cycle — straight to your wallet, no claiming. Paste your address to see what you've been paid.</p>
+  </div>
+  <div class="earn-box reveal">
+    <div class="earn-bar">
+      <input id="earnAddr" class="earn-input" placeholder="Paste your Solana wallet address…" spellcheck="false" autocomplete="off" />
+      <button id="earnBtn" class="btn btn--buy">Check 🍟</button>
+    </div>
+    <div id="earnResult" class="earn-result"></div>
+  </div>
+</section>
+
+<!-- ================= RECENT AIRDROPS ================= -->
+<section class="section airdrops" id="airdrops">
+  <div class="section__head reveal">
+    <span class="kicker">Live From the Dispenser</span>
+    <h2 class="section__title">Recent <span class="hl">Airdrops</span> 🍟</h2>
+    <p class="section__lead">Every cycle the machine claims fees, buys MCDx on Jupiter, and ships it to every qualified holder. Newest drops first.</p>
+  </div>
+  <div class="airdrop-stats" id="airdropStats"></div>
+  <div class="airdrop-grid" id="airdropGrid">
+    <div class="airdrop-empty">Connecting to the machine…</div>
+  </div>
 </section>
 
 <!-- ================= COMPARISON ================= -->

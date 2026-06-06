@@ -9,3 +9,6 @@ node_modules/
 
 # Unrelated file synced in by OneDrive — not part of this project
 CAOZ_ICON.png
+
+# Local machine runtime state (created when running the bot locally)
+data/

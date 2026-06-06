@@ -16,6 +16,12 @@
   };
   const PLACEHOLDER_CA = "COMING SOON — DON'T BUY A FAKE, SER";
 
+  // Base URL of the distribution machine (the /machine app on Railway) that
+  // powers "Recent Airdrops" and "Check Your Earnings". Paste its URL here once
+  // it's deployed, e.g. "https://jobcoin-machine.up.railway.app". Leave empty
+  // and both sections show a friendly "goes live at launch" placeholder.
+  const MACHINE_API = "";
+
   /* ---------- helpers ---------- */
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -174,6 +180,173 @@
       fryBurst({ clientX: window.innerWidth / 2, clientY: window.innerHeight / 3 });
     }
   });
+
+  /* ============================================================
+     LIVE FROM THE MACHINE — Recent Airdrops + Check Your Earnings
+     ============================================================ */
+  const MCD_LOGO =
+    "https://xstocks-metadata.backed.fi/logos/tokens/MCDx.png";
+  const api = (p) => (MACHINE_API || "").replace(/\/$/, "") + p;
+  const shortAddr = (a) => (a ? a.slice(0, 4) + "…" + a.slice(-4) : "—");
+  const ago = (ts) => {
+    if (!ts) return "—";
+    const s = Math.floor((Date.now() - ts) / 1000);
+    if (s < 60) return s + "s ago";
+    if (s < 3600) return Math.floor(s / 60) + "m ago";
+    if (s < 86400) return Math.floor(s / 3600) + "h ago";
+    return Math.floor(s / 86400) + "d ago";
+  };
+  const num = (n, d = 4) =>
+    (Number(n) || 0).toLocaleString("en-US", {
+      minimumFractionDigits: d,
+      maximumFractionDigits: d,
+    });
+  const solscanTx = (s) => "https://solscan.io/tx/" + s;
+  const solscanAcc = (a) => "https://solscan.io/account/" + a;
+
+  const notLiveMsg =
+    "The machine goes live at launch — your MCDx airdrops show up here automatically. 🍟";
+
+  /* ---------- Recent Airdrops ---------- */
+  function renderAirdrops(state) {
+    const grid = $("#airdropGrid");
+    const stats = $("#airdropStats");
+    if (!grid) return;
+    const winners = (state.recentWinners || []).slice(0, 12);
+    const t = state.totals || {};
+    const cur = state.current || {};
+    if (stats) {
+      stats.innerHTML =
+        statCell(num(t.solSpentOnStock, 2) + "◎", "SOL of MCDx shipped") +
+        statCell((t.recipientsPaid || 0).toLocaleString(), "Holder payouts") +
+        statCell((t.dispenseCount || 0).toLocaleString(), "Airdrop cycles") +
+        statCell((cur.qualifiedCount || 0).toLocaleString(), "Qualified holders");
+    }
+    if (!winners.length) {
+      grid.innerHTML =
+        '<div class="airdrop-empty">No airdrops yet — the first MCDx drop fires once fees are claimed and holders qualify. 🍟</div>';
+      return;
+    }
+    grid.innerHTML = winners
+      .map(function (w) {
+        const link = w.signature
+          ? '<a href="' + solscanTx(w.signature) + '" target="_blank" rel="noopener">receipt ▸</a>'
+          : "<span>pending</span>";
+        return (
+          '<div class="airdrop-card">' +
+          '<div class="top"><span class="tkw"><img src="' + MCD_LOGO + '" alt="MCDx"/><b>$MCD</b></span>' +
+          '<span class="when">' + ago(w.ts) + "</span></div>" +
+          '<div class="amt">' + num(w.amountUi, 4) + ' <small>MCDx</small></div>' +
+          '<div class="row"><a href="' + solscanAcc(w.owner) + '" target="_blank" rel="noopener">' + shortAddr(w.owner) + "</a>" + link + "</div>" +
+          "</div>"
+        );
+      })
+      .join("");
+  }
+  function statCell(v, k) {
+    return '<div class="airdrop-stat"><span class="v">' + v + '</span><span class="k">' + k + "</span></div>";
+  }
+
+  let airdropTimer = null;
+  function loadAirdrops() {
+    const grid = $("#airdropGrid");
+    if (!grid) return;
+    if (!MACHINE_API) {
+      grid.innerHTML = '<div class="airdrop-empty">' + notLiveMsg + "</div>";
+      return;
+    }
+    fetch(api("/api/state"), { cache: "no-store" })
+      .then((r) => r.json())
+      .then(renderAirdrops)
+      .catch(function () {
+        grid.innerHTML =
+          '<div class="airdrop-empty">Couldn\'t reach the machine right now — try again in a moment.</div>';
+      });
+  }
+
+  /* ---------- Check Your Earnings ---------- */
+  function renderEarnings(addr, d) {
+    const box = $("#earnResult");
+    if (!box) return;
+    box.classList.add("show");
+    if (d.error) {
+      box.innerHTML = '<div class="earn-empty">' + d.error + "</div>";
+      return;
+    }
+    const min = Number(d.minHolderBalance || 500000).toLocaleString();
+    const qualified = d.holding
+      ? d.holding.qualified
+        ? '<span class="earn-badge">✓ Qualified</span>'
+        : '<span class="earn-badge no">Below ' + min + " $JOB</span>"
+      : '<span class="earn-badge no">Not in holder snapshot</span>';
+    const holdLine = d.holding
+      ? "holds " + Math.round(d.holding.uiBalance).toLocaleString() + " $JOB"
+      : "holding unknown";
+    const head =
+      '<div class="earn-head"><div>' +
+      '<div class="earn-addr">' + shortAddr(addr) + "</div>" +
+      '<div class="earn-total">' + num(d.totalSol, 4) + ' <small>SOL of MCDx · ' + (d.count || 0) + " airdrops</small></div></div>" +
+      '<div style="text-align:right">' + qualified + '<div class="earn-sub">' + holdLine + "</div></div></div>";
+    let body;
+    if (d.byStock && d.byStock.length) {
+      body =
+        '<div class="earn-cells">' +
+        d.byStock
+          .map(function (b) {
+            return (
+              '<div class="earn-cell"><img src="' + MCD_LOGO + '" alt="MCDx"/>' +
+              '<div><div class="tk">$' + (b.ticker || "MCD") + '</div>' +
+              '<div class="sh">' + num(b.shares, 4) + '</div>' +
+              '<div class="sl">≈ ' + num(b.sol, 4) + " SOL · " + b.count + "×</div></div></div>"
+            );
+          })
+          .join("") +
+        "</div>";
+    } else {
+      body =
+        '<div class="earn-empty">No MCDx paid to this wallet yet' +
+        (d.holding && !d.holding.qualified
+          ? " — top up to " + min + "+ $JOB to start earning."
+          : ".") +
+        "</div>";
+    }
+    box.innerHTML = head + body;
+  }
+
+  function checkEarnings(addr) {
+    addr = (addr || "").trim();
+    const box = $("#earnResult");
+    if (!box) return;
+    if (addr.length < 32 || addr.length > 44) {
+      box.classList.add("show");
+      box.innerHTML = '<div class="earn-empty">That doesn\'t look like a Solana wallet address.</div>';
+      return;
+    }
+    if (!MACHINE_API) {
+      box.classList.add("show");
+      box.innerHTML = '<div class="earn-empty">' + notLiveMsg + "</div>";
+      return;
+    }
+    box.classList.add("show");
+    box.innerHTML = '<div class="earn-empty">Looking up ' + shortAddr(addr) + "…</div>";
+    fetch(api("/api/holder/" + addr), { cache: "no-store" })
+      .then((r) => r.json())
+      .then((d) => renderEarnings(addr, d))
+      .catch(function () {
+        box.innerHTML = '<div class="earn-empty">Lookup failed — try again in a moment.</div>';
+      });
+  }
+
+  const earnBtn = $("#earnBtn");
+  const earnAddr = $("#earnAddr");
+  if (earnBtn && earnAddr) {
+    earnBtn.addEventListener("click", (e) => { checkEarnings(earnAddr.value); fryBurst(e); });
+    earnAddr.addEventListener("keydown", (e) => { if (e.key === "Enter") checkEarnings(earnAddr.value); });
+  }
+
+  // kick off airdrops feed (and refresh every 20s while the page is open)
+  loadAirdrops();
+  if (MACHINE_API) airdropTimer = setInterval(loadAirdrops, 20000);
 
   /* ---------- footer year ---------- */
   // (kept static 2026 in markup; nothing to do)
