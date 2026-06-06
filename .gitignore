@@ -1,0 +1,11 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# Node
+node_modules/
+
+# Unrelated file synced in by OneDrive — not part of this project
+CAOZ_ICON.png
