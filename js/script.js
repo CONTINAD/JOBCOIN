@@ -215,6 +215,11 @@
     const winners = (state.recentWinners || []).slice(0, 12);
     const t = state.totals || {};
     const cur = state.current || {};
+    // live metrics banner: total fees claimed + unique "broke" wallets paid
+    const mFees = $("#mFees");
+    const mBroke = $("#mBroke");
+    if (mFees) mFees.textContent = num(t.solClaimed, 2);
+    if (mBroke) mBroke.textContent = (state.uniqueRecipients || 0).toLocaleString();
     if (stats) {
       stats.innerHTML =
         statCell(num(t.solSpentOnStock, 2) + "◎", "SOL of MCDx shipped") +

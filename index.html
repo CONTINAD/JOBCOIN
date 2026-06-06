@@ -59,7 +59,6 @@
   </a>
   <nav class="nav__links" id="navLinks">
     <a href="#cope">The Cope</a>
-    <a href="#menu">The Menu</a>
     <a href="#earnings">Earnings</a>
     <a href="#tokenomics">Tokenomics</a>
     <a href="#career">Career Path</a>
@@ -92,7 +91,7 @@
 
       <div class="hero__cta">
         <a href="#buy" class="btn btn--buy btn--lg">Buy $JOB</a>
-        <a href="#menu" class="btn btn--ghost btn--lg">Read the Menu ▾</a>
+        <a href="#earnings" class="btn btn--ghost btn--lg">Check Earnings ▾</a>
       </div>
 
       <div class="ca" id="caBox" title="Click to copy">
@@ -126,12 +125,12 @@
     <span class="metric__label">Tax — no cut from your paycheck</span>
   </div>
   <div class="metric reveal">
-    <span class="metric__num" data-count="100" data-suffix="%">100%</span>
-    <span class="metric__label">Of holders who got cooked</span>
+    <span class="metric__num" id="mFees">—</span>
+    <span class="metric__label">Total fees claimed (◎ SOL)</span>
   </div>
   <div class="metric reveal">
-    <span class="metric__num">∞</span>
-    <span class="metric__label">Job applications pending</span>
+    <span class="metric__num" id="mBroke">—</span>
+    <span class="metric__label">"Broke" wallets paid in MCDx</span>
   </div>
 </section>
 
@@ -148,7 +147,7 @@
       <p>You aped the top. You leveraged the bounce. You "diamond-handed" a -94% candle and called it conviction. The exit liquidity has left the building.</p>
       <p>Wall Street has the S&amp;P 500. Solana degens have <strong>xStocks</strong> — tokenized Apple, Tesla, Nvidia, the whole blue-chip buffet, onchain 24/7.</p>
       <p>And then there's us. <strong>$JOBCOIN</strong> is the only tokenized equity that matches your actual career trajectory: <em>a shift at McDonald's.</em> We're not here to make you rich. We're here to make you <strong>employed</strong>.</p>
-      <a href="#menu" class="btn btn--buy">See What's On the Menu ▾</a>
+      <a href="#earnings" class="btn btn--buy">Check Your Earnings ▾</a>
     </div>
     <div class="cope__card reveal">
       <div class="cope__chart">
@@ -165,55 +164,6 @@
       <p class="cope__stamp">LIQUIDATED</p>
     </div>
   </div>
-</section>
-
-<!-- ================= THE MENU (xStocks parody) ================= -->
-<section class="section menu" id="menu">
-  <div class="section__head reveal">
-    <span class="kicker">Now Serving — Tokenized Equities (sort of)</span>
-    <h2 class="section__title">The <span class="hl">Menu</span> 🍔</h2>
-    <p class="section__lead">We took xStocks, removed the stocks, and kept the minimum wage. Every $JOB is backed 1:1 by genuine, regulator-approved <em>cope.</em></p>
-  </div>
-
-  <div class="menu__grid">
-    <article class="ticker-card reveal">
-      <div class="ticker-card__top"><span class="ticker-card__emoji">🍔</span><span class="tag up">▲ NEW</span></div>
-      <h3 class="ticker-card__sym">MCDx</h3>
-      <p class="ticker-card__name">McDonald's, but onchain</p>
-      <p class="ticker-card__price">$317.42 <span class="up">+2.1%</span></p>
-    </article>
-    <article class="ticker-card reveal">
-      <div class="ticker-card__top"><span class="ticker-card__emoji">🍟</span><span class="tag up">▲ HOT</span></div>
-      <h3 class="ticker-card__sym">FRYx</h3>
-      <p class="ticker-card__name">Large fry liquidity pool</p>
-      <p class="ticker-card__price">$3.99 <span class="up">+420%</span></p>
-    </article>
-    <article class="ticker-card reveal">
-      <div class="ticker-card__top"><span class="ticker-card__emoji">🥤</span><span class="tag down">▼ MELTING</span></div>
-      <h3 class="ticker-card__sym">MCFLURRYx</h3>
-      <p class="ticker-card__name">Machine is down again</p>
-      <p class="ticker-card__price">$5.49 <span class="down">-100%</span></p>
-    </article>
-    <article class="ticker-card reveal">
-      <div class="ticker-card__top"><span class="ticker-card__emoji">🍗</span><span class="tag up">▲ 20pc</span></div>
-      <h3 class="ticker-card__sym">NUGGETx</h3>
-      <p class="ticker-card__name">Tendies, finally real</p>
-      <p class="ticker-card__price">$8.69 <span class="up">+69%</span></p>
-    </article>
-    <article class="ticker-card reveal">
-      <div class="ticker-card__top"><span class="ticker-card__emoji">🧸</span><span class="tag up">▲ TOY</span></div>
-      <h3 class="ticker-card__sym">HAPPYx</h3>
-      <p class="ticker-card__name">Happy Meal index fund</p>
-      <p class="ticker-card__price">$6.29 <span class="up">+12%</span></p>
-    </article>
-    <article class="ticker-card ticker-card--star reveal">
-      <div class="ticker-card__top"><span class="ticker-card__emoji">🪙</span><span class="tag up">▲ YOU</span></div>
-      <h3 class="ticker-card__sym">$JOB</h3>
-      <p class="ticker-card__name">The only one that's hiring</p>
-      <p class="ticker-card__price">CLOCK IN <span class="up">▲ ∞%</span></p>
-    </article>
-  </div>
-  <p class="menu__disclaimer">* Tickers shown are jokes. You will not receive McDonald's stock, a McFlurry, or financial stability. You will receive $JOB.</p>
 </section>
 
 <!-- ================= CHECK YOUR EARNINGS ================= -->

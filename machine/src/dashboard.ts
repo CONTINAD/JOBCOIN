@@ -34,6 +34,9 @@ export function startDashboard() {
     const s = tracker.snapshot();
     const slim: Record<string, unknown> = {
       ...s,
+      // Count of unique wallets that have ever received an MCDx airdrop (the
+      // "broke wallets paid" stat). Cheap to compute from the recipients map.
+      uniqueRecipients: Object.keys(s.recipients || {}).length,
       recentWinners: (s.recentWinners || []).slice(0, 40),
       dispenses: (s.dispenses || []).slice(-10).map((d) => ({
         ts: d.ts, cycle: d.cycle, symbol: d.symbol, ticker: d.ticker,
