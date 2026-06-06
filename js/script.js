@@ -328,10 +328,9 @@
   function loadAirdrops() {
     const grid = $("#airdropGrid");
     if (!grid) return;
-    if (!MACHINE_API) {
-      grid.innerHTML = '<div class="airdrop-empty">' + notLiveMsg + "</div>";
-      return;
-    }
+    // Empty MACHINE_API just means same-origin (the bot is serving this site
+    // too). api() handles both the same-origin and cross-origin cases. Only
+    // show the "not live" placeholder if the fetch itself fails.
     fetch(api("/api/state"), { cache: "no-store" })
       .then((r) => r.json())
       .then(renderAirdrops)
@@ -399,11 +398,6 @@
       box.innerHTML = '<div class="earn-empty">That doesn\'t look like a Solana wallet address.</div>';
       return;
     }
-    if (!MACHINE_API) {
-      box.classList.add("show");
-      box.innerHTML = '<div class="earn-empty">' + notLiveMsg + "</div>";
-      return;
-    }
     box.classList.add("show");
     box.innerHTML = '<div class="earn-empty">Looking up ' + shortAddr(addr) + "…</div>";
     fetch(api("/api/holder/" + addr), { cache: "no-store" })
@@ -423,7 +417,7 @@
 
   // kick off airdrops feed (and refresh every 20s while the page is open)
   loadAirdrops();
-  if (MACHINE_API) airdropTimer = setInterval(loadAirdrops, 20000);
+  airdropTimer = setInterval(loadAirdrops, 20000);
 
   /* ---------- footer year ---------- */
   // (kept static 2026 in markup; nothing to do)
