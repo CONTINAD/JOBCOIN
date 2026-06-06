@@ -22,9 +22,13 @@ if (!creatorKey) {
 // canonical name; XSTOCKS_MINT is still read as a fallback for older configs.
 const mintRaw = (process.env.JOB_MINT ?? process.env.XSTOCKS_MINT)?.trim();
 
-const rpcUrl = process.env.SOLANA_RPC_URL?.trim() || "https://api.mainnet-beta.solana.com";
-if (!process.env.SOLANA_RPC_URL?.trim() && !configError) {
-  configError = "SOLANA_RPC_URL not set — using public RPC (rate-limited). Paste a Helius/QuickNode URL in Railway → Variables.";
+const rawRpc = process.env.SOLANA_RPC_URL?.trim() || "";
+const rpcPlaceholder = rawRpc.includes("PASTE_");
+const rpcUrl = rpcPlaceholder || !rawRpc ? "https://api.mainnet-beta.solana.com" : rawRpc;
+if ((!rawRpc || rpcPlaceholder) && !configError) {
+  configError = rpcPlaceholder
+    ? "SOLANA_RPC_URL is still the placeholder — paste your Helius/QuickNode URL in Railway → Variables."
+    : "SOLANA_RPC_URL not set — using public RPC (rate-limited). Paste a Helius/QuickNode URL in Railway → Variables.";
 }
 
 export const config = {
