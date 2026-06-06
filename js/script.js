@@ -17,10 +17,9 @@
   const PLACEHOLDER_CA = "COMING SOON — DON'T BUY A FAKE, SER";
 
   // Base URL of the distribution machine (the /machine app on Railway) that
-  // powers "Recent Airdrops" and "Check Your Earnings". Paste its URL here once
-  // it's deployed, e.g. "https://jobcoin-machine.up.railway.app". Leave empty
-  // and both sections show a friendly "goes live at launch" placeholder.
-  const MACHINE_API = "";
+  // powers "Recent Airdrops" and "Check Your Earnings". When jobcoin.tech DNS
+  // is set, switch this to "https://machine.jobcoin.tech".
+  const MACHINE_API = "https://jobcoin-production-a6c6.up.railway.app";
 
   /* ---------- helpers ---------- */
   const $ = (s, r = document) => r.querySelector(s);
