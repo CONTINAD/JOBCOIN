@@ -17,9 +17,9 @@
   const PLACEHOLDER_CA = "COMING SOON — DON'T BUY A FAKE, SER";
 
   // Base URL of the distribution machine (the /machine app on Railway) that
-  // powers "Recent Airdrops" and "Check Your Earnings". When jobcoin.tech DNS
-  // is set, switch this to "https://machine.jobcoin.tech".
-  const MACHINE_API = "https://jobcoin-production-a6c6.up.railway.app";
+  // powers "Recent Airdrops" and "Check Your Earnings". This points at the
+  // pretty subdomain; resolves once the DNS CNAME is in Porkbun.
+  const MACHINE_API = "https://machine.jobcoin.tech";
 
   /* ---------- helpers ---------- */
   const $ = (s, r = document) => r.querySelector(s);
