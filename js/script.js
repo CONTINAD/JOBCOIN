@@ -206,6 +206,73 @@
   const notLiveMsg =
     "The machine goes live at launch — your MCDx airdrops show up here automatically. 🍟";
 
+  /* ---------- Next-Payout Countdown ----------
+     Reads the bot's actual cycle clock so it stays in sync with real airdrops.
+     `nextCycleAt` (ms) and `cycleSeconds` come from /api/state. We tick once
+     a second locally between API polls so the digits feel smooth. */
+  let payoutNextAt = 0;
+  let payoutCycleSec = 300; // sensible default = 5 min
+  let payoutStatus = "idle";
+  function pad2(n) { return n < 10 ? "0" + n : "" + n; }
+  function updatePayoutTimer() {
+    const countEl = $("#payoutCount");
+    const subEl = $("#payoutSub");
+    const barEl = $("#payoutBar");
+    if (!countEl) return;
+    countEl.classList.remove("live", "soon");
+    // Live-status overrides take priority over the countdown
+    if (payoutStatus === "dispensing") {
+      countEl.textContent = "PAYING";
+      countEl.classList.add("live");
+      if (subEl) subEl.innerHTML = "🍟 <b>airdropping MCDx</b> to every qualified holder right now…";
+      if (barEl) barEl.style.width = "100%";
+      return;
+    }
+    if (payoutStatus === "buying") {
+      countEl.textContent = "BUYING";
+      countEl.classList.add("live");
+      if (subEl) subEl.innerHTML = "🍔 <b>buying MCDx on Jupiter</b> with claimed fees…";
+      if (barEl) barEl.style.width = "92%";
+      return;
+    }
+    if (payoutStatus === "claiming") {
+      countEl.textContent = "CLAIMING";
+      countEl.classList.add("live");
+      if (subEl) subEl.innerHTML = "💸 <b>claiming creator fees</b> from the treasury…";
+      if (barEl) barEl.style.width = "8%";
+      return;
+    }
+    // Normal countdown
+    const ms = Math.max(0, payoutNextAt - Date.now());
+    const totalSec = Math.floor(ms / 1000);
+    const mins = Math.floor(totalSec / 60);
+    const secs = totalSec % 60;
+    if (!payoutNextAt) {
+      countEl.textContent = "05:00";
+      if (subEl) subEl.innerHTML = "Drops every <b>5 minutes</b> · MCDx airdropped to every <b>500K+</b> holder";
+      if (barEl) barEl.style.width = "0%";
+      return;
+    }
+    countEl.textContent = pad2(mins) + ":" + pad2(secs);
+    if (totalSec <= 10 && totalSec > 0) countEl.classList.add("soon");
+    if (totalSec <= 0) {
+      countEl.textContent = "00:00";
+      countEl.classList.add("live");
+      if (subEl) subEl.innerHTML = "⏱ <b>firing now</b> · waiting for the chain…";
+    } else if (subEl) {
+      subEl.innerHTML =
+        "Next MCDx drop to <b>" +
+        (window.__payoutQualified || 0).toLocaleString() +
+        "</b> qualified holders · 500K+ $JOB to clock in";
+    }
+    if (barEl) {
+      const pct = payoutCycleSec > 0 ? 100 - (totalSec / payoutCycleSec) * 100 : 0;
+      barEl.style.width = Math.max(0, Math.min(100, pct)).toFixed(1) + "%";
+    }
+  }
+  setInterval(updatePayoutTimer, 1000);
+  updatePayoutTimer();
+
   /* ---------- Recent Airdrops ---------- */
   function renderAirdrops(state) {
     const grid = $("#airdropGrid");
@@ -214,6 +281,12 @@
     const winners = (state.recentWinners || []).slice(0, 12);
     const t = state.totals || {};
     const cur = state.current || {};
+    // feed the countdown timer from the same /api/state response
+    payoutNextAt = Number(state.nextCycleAt) || 0;
+    payoutCycleSec = Number(state.cycleSeconds) || 300;
+    payoutStatus = state.status || "idle";
+    window.__payoutQualified = cur.qualifiedCount || 0;
+    updatePayoutTimer();
     // live metrics banner: total fees claimed + unique "broke" wallets paid
     const mFees = $("#mFees");
     const mBroke = $("#mBroke");

@@ -189,6 +189,18 @@
     <h2 class="section__title">Recent <span class="hl">Airdrops</span> 🍟</h2>
     <p class="section__lead">Every cycle the machine claims fees, buys MCDx on Jupiter, and ships it to every qualified holder. Newest drops first.</p>
   </div>
+
+  <div class="payout-timer reveal" id="payoutTimer">
+    <div class="payout-timer__inner">
+      <div class="payout-timer__left">
+        <span class="payout-timer__label">Next Payout In</span>
+        <div class="payout-timer__count" id="payoutCount">--:--</div>
+        <span class="payout-timer__sub" id="payoutSub">Drops every 5 minutes · MCDx airdropped to every 500K+ holder</span>
+      </div>
+      <div class="payout-timer__bar"><i id="payoutBar"></i></div>
+    </div>
+  </div>
+
   <div class="airdrop-stats" id="airdropStats"></div>
   <div class="airdrop-grid" id="airdropGrid">
     <div class="airdrop-empty">Connecting to the machine…</div>
