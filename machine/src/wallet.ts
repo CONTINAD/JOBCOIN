@@ -38,6 +38,48 @@ export async function getSolBalance(pk: PublicKey): Promise<number> {
   return (await connection.getBalance(pk)) / LAMPORTS_PER_SOL;
 }
 
+/**
+ * Read the EXACT SOL delta for a single account inside ONE specific transaction
+ * (i.e. how many lamports its balance changed by, just from this tx). This is
+ * the safety-critical input to the claim-pool ledger: by using the tx's own
+ * pre/post balances instead of the wallet-wide balance at two wall-clock times,
+ * any other tx that happens to land in the same window (dev sell, manual
+ * transfer, airdrop, anything) CANNOT be misread as part of the claim. The
+ * ledger only ever credits SOL the claim tx itself transferred.
+ *
+ * Returns the lamports delta (positive = received, negative = paid). Returns
+ * null if the tx can't be fetched yet — caller should retry / treat as 0.
+ */
+export async function txLamportDelta(signature: string, account: PublicKey): Promise<number | null> {
+  // Retry a few times: a freshly-confirmed tx isn't always immediately fetchable
+  // from the same RPC endpoint that confirmed it.
+  for (let attempt = 0; attempt < 5; attempt++) {
+    try {
+      const tx = await connection.getTransaction(signature, {
+        commitment: "confirmed",
+        maxSupportedTransactionVersion: 0,
+      });
+      if (!tx?.meta) {
+        await new Promise((r) => setTimeout(r, 1500));
+        continue;
+      }
+      const keys = (tx.transaction.message as any).staticAccountKeys
+        ?? (tx.transaction.message as any).accountKeys
+        ?? [];
+      const target = account.toBase58();
+      const idx = (keys as Array<{ toBase58?: () => string } | string>)
+        .findIndex((k) => (typeof k === "string" ? k : k?.toBase58?.()) === target);
+      if (idx < 0) return 0;
+      const pre = tx.meta.preBalances?.[idx] ?? 0;
+      const post = tx.meta.postBalances?.[idx] ?? 0;
+      return post - pre;
+    } catch {
+      await new Promise((r) => setTimeout(r, 1500));
+    }
+  }
+  return null;
+}
+
 export async function getMintSupplyUi(mint: PublicKey): Promise<{
   uiAmount: number;
   decimals: number;

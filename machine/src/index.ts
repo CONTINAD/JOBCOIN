@@ -8,6 +8,7 @@ import {
   ata2022,
   whichAtasExist,
   discoverAtaRent,
+  txLamportDelta,
 } from "./wallet";
 import { RewardsClaimer } from "./claim-rewards";
 import { tracker } from "./activity";
@@ -155,12 +156,18 @@ async function main() {
       tracker.setNextStock({ symbol: nextStock.symbol, ticker: nextStock.ticker, name: nextStock.name });
 
       // ── 1. Claim creator fees (SOL) on the treasury wallet ───────────────
-      const balBeforeLamports = Math.floor((await getSolBalance(treasury.publicKey)) * LAMPORTS_PER_SOL);
+      // Safety: we credit the spendable pool ONLY by what the claim tx itself
+      // transferred to the treasury (parsed from the tx's own pre/post lamport
+      // balances), NOT by the wall-clock wallet delta. So any other tx that
+      // happens to land in the same window — a dev sell, a manual transfer,
+      // anything — cannot be misread as part of the claim, and the bot can
+      // NEVER spend funds it didn't itself claim.
       const claimSig = await claimer.claim();
       if (claimSig) {
-        await sleep(3000);
-        const balAfterLamports = Math.floor((await getSolBalance(treasury.publicKey)) * LAMPORTS_PER_SOL);
-        const claimedLamports = Math.max(0, balAfterLamports - balBeforeLamports);
+        const txDelta = await txLamportDelta(claimSig, treasury.publicKey);
+        // Fallback: if the tx can't be fetched (RPC lag), credit 0 — better to
+        // skip a cycle than to over-credit. Next cycle we'll catch up.
+        const claimedLamports = Math.max(0, txDelta ?? 0);
         if (claimedLamports > 0) {
           tracker.recordClaim(claimedLamports / LAMPORTS_PER_SOL, claimSig);
           const marketingKeep = Math.floor((claimedLamports * Math.min(100, config.marketingPercent)) / 100);
