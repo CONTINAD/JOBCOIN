@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JOBCOIN ($JOB) — You Got Cooked. Time to Get a Job.</title>
+<meta name="description" content="$JOBCOIN delivers McDonald's stock straight to your wallet — because your bags didn't. The leading network of tokenized employment on Solana. Clock in, ser." />
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="JOBCOIN ($JOB) — You Got Cooked. Time to Get a Job." />
+<meta property="og:description" content="The leading network of tokenized employment on Solana. We took xStocks, removed the stocks, kept the minimum wage. 🍟" />
+<meta property="og:image" content="assets/img/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="JOBCOIN ($JOB) — Get. A. Job." />
+<meta name="twitter:description" content="Your portfolio is a Happy Meal. $JOB delivers McDonald's stock to your wallet. Clock in. 🍟" />
+<meta name="twitter:image" content="assets/img/og-image.png" />
+<meta name="theme-color" content="#DA291C" />
+
+<link rel="icon" type="image/png" href="assets/img/logo.png" />
+<link rel="apple-touch-icon" href="assets/img/logo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ================= SCROLLING TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span class="t-up">$JOB ▲ NOW HIRING</span><span class="dot">•</span>
+    <span class="t-up">$MCD ▲ +2.1%</span><span class="dot">•</span>
+    <span class="t-down">$BTC ▼ REKT</span><span class="dot">•</span>
+    <span class="t-down">$SOL ▼ COOKED</span><span class="dot">•</span>
+    <span class="t-down">$ETH ▼ LIQUIDATED</span><span class="dot">•</span>
+    <span class="t-flat">YOUR PORTFOLIO ▼ A HAPPY MEAL</span><span class="dot">•</span>
+    <span class="t-up">DRIVE-THRU OPEN 24/7</span><span class="dot">•</span>
+    <span class="t-up">$JOB ▲ GET. A. JOB.</span><span class="dot">•</span>
+    <!-- duplicate for seamless loop -->
+    <span class="t-up">$JOB ▲ NOW HIRING</span><span class="dot">•</span>
+    <span class="t-up">$MCD ▲ +2.1%</span><span class="dot">•</span>
+    <span class="t-down">$BTC ▼ REKT</span><span class="dot">•</span>
+    <span class="t-down">$SOL ▼ COOKED</span><span class="dot">•</span>
+    <span class="t-down">$ETH ▼ LIQUIDATED</span><span class="dot">•</span>
+    <span class="t-flat">YOUR PORTFOLIO ▼ A HAPPY MEAL</span><span class="dot">•</span>
+    <span class="t-up">DRIVE-THRU OPEN 24/7</span><span class="dot">•</span>
+    <span class="t-up">$JOB ▲ GET. A. JOB.</span><span class="dot">•</span>
+  </div>
+</div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="top">
+  <a class="nav__brand" href="#top">
+    <img src="assets/img/logo.png" alt="JOBCOIN logo" class="nav__logo" />
+    <span class="nav__name">JOB<span class="nav__name--y">COIN</span></span>
+  </a>
+  <nav class="nav__links" id="navLinks">
+    <a href="#cope">The Cope</a>
+    <a href="#earnings">Earnings</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#career">Career Path</a>
+    <a href="#buy">How to Buy</a>
+    <a href="#faq">FAQ</a>
+    <a href="#buy" class="btn btn--buy nav__cta">Buy $JOB</a>
+  </nav>
+  <button class="nav__toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <span class="float-emoji f1" aria-hidden="true">🍟</span>
+  <span class="float-emoji f2" aria-hidden="true">🍔</span>
+  <span class="float-emoji f3" aria-hidden="true">🥤</span>
+  <span class="float-emoji f4" aria-hidden="true">📉</span>
+
+  <div class="hero__inner">
+    <div class="hero__copy reveal">
+      <p class="hero__eyebrow">The leading network of tokenized employment</p>
+      <h1 class="hero__title">YOU GOT <span class="strike">COOKED</span>.<br>TIME TO GET A <span class="hl">JOB</span>.</h1>
+      <p class="hero__sub">
+        Your bags are down 97%. Your portfolio is a Happy Meal.
+        <strong>$JOBCOIN</strong> delivers McDonald's stock straight to your wallet —
+        because the charts won't. Clock in, ser. 🍟
+      </p>
+
+      <div class="hero__cta">
+        <a href="#buy" class="btn btn--buy btn--lg">Buy $JOB</a>
+        <a href="#earnings" class="btn btn--ghost btn--lg">Check Earnings ▾</a>
+      </div>
+
+      <div class="ca" id="caBox" title="Click to copy">
+        <span class="ca__label">CA</span>
+        <code class="ca__value" id="caValue">COMING SOON — DON'T BUY A FAKE, SER</code>
+        <button class="ca__copy" id="caCopy" aria-label="Copy contract address">COPY</button>
+      </div>
+    </div>
+
+    <div class="hero__art reveal">
+      <div class="hero__frame">
+        <span class="badge-hiring">NOW<br>HIRING</span>
+        <img src="assets/img/hero-wojak.png" alt="A burnt-out crypto trader now working at McDonald's, holding a Happy Meal" />
+      </div>
+      <div class="hero__nametag">
+        <span class="hero__nametag-co">McSolana™</span>
+        <span class="hero__nametag-name">CREW: $JOB</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= METRICS ================= -->
+<section class="metrics">
+  <div class="metric reveal">
+    <span class="metric__num" data-count="1000000000">1,000,000,000</span>
+    <span class="metric__label">$JOB total supply</span>
+  </div>
+  <div class="metric reveal">
+    <span class="metric__num" data-count="0" data-suffix="%">0%</span>
+    <span class="metric__label">Tax — no cut from your paycheck</span>
+  </div>
+  <div class="metric reveal">
+    <span class="metric__num" id="mFees">—</span>
+    <span class="metric__label">Total fees claimed (◎ SOL)</span>
+  </div>
+  <div class="metric reveal">
+    <span class="metric__num" id="mBroke">—</span>
+    <span class="metric__label">"Broke" wallets paid in MCDx</span>
+  </div>
+</section>
+
+<div class="served">🍟 OVER <strong>BILLIONS</strong> COOKED 🍟</div>
+
+<!-- ================= THE COPE / STORY ================= -->
+<section class="section cope" id="cope">
+  <div class="section__head reveal">
+    <span class="kicker">The Cope</span>
+    <h2 class="section__title">It's not a dip.<br>It's a <span class="hl">layoff</span>.</h2>
+  </div>
+  <div class="cope__grid">
+    <div class="cope__text reveal">
+      <p>You aped the top. You leveraged the bounce. You "diamond-handed" a -94% candle and called it conviction. The exit liquidity has left the building.</p>
+      <p>Wall Street has the S&amp;P 500. Solana degens have <strong>xStocks</strong> — tokenized Apple, Tesla, Nvidia, the whole blue-chip buffet, onchain 24/7.</p>
+      <p>And then there's us. <strong>$JOBCOIN</strong> is the only tokenized equity that matches your actual career trajectory: <em>a shift at McDonald's.</em> We're not here to make you rich. We're here to make you <strong>employed</strong>.</p>
+      <a href="#earnings" class="btn btn--buy">Check Your Earnings ▾</a>
+    </div>
+    <div class="cope__card reveal">
+      <div class="cope__chart">
+        <div class="bar" style="--h:95%"></div>
+        <div class="bar" style="--h:80%"></div>
+        <div class="bar" style="--h:88%"></div>
+        <div class="bar" style="--h:60%"></div>
+        <div class="bar" style="--h:42%"></div>
+        <div class="bar" style="--h:30%"></div>
+        <div class="bar" style="--h:18%"></div>
+        <div class="bar bar--rekt" style="--h:6%"></div>
+      </div>
+      <div class="cope__chart-caption">YOUR&nbsp;BAGS&nbsp;<span class="t-down">▼&nbsp;97%</span></div>
+      <p class="cope__stamp">LIQUIDATED</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CHECK YOUR EARNINGS ================= -->
+<section class="section earn" id="earnings">
+  <div class="section__head reveal">
+    <span class="kicker">The Paycheck — Real MCDx</span>
+    <h2 class="section__title">Check Your <span class="hl">Earnings</span> 🍔</h2>
+    <p class="section__lead">Hold <strong>500,000+ $JOB</strong> and the machine airdrops you real McDonald's stock (<strong>MCDx</strong>) every cycle — straight to your wallet, no claiming. Paste your address to see what you've been paid.</p>
+  </div>
+  <div class="earn-box reveal">
+    <div class="earn-bar">
+      <input id="earnAddr" class="earn-input" placeholder="Paste your Solana wallet address…" spellcheck="false" autocomplete="off" />
+      <button id="earnBtn" class="btn btn--buy">Check 🍟</button>
+    </div>
+    <div id="earnResult" class="earn-result"></div>
+  </div>
+</section>
+
+<!-- ================= RECENT AIRDROPS ================= -->
+<section class="section airdrops" id="airdrops">
+  <div class="section__head reveal">
+    <span class="kicker">Live From the Dispenser</span>
+    <h2 class="section__title">Recent <span class="hl">Airdrops</span> 🍟</h2>
+    <p class="section__lead">Every cycle the machine claims fees, buys MCDx on Jupiter, and ships it to every qualified holder. Newest drops first.</p>
+  </div>
+  <div class="airdrop-stats" id="airdropStats"></div>
+  <div class="airdrop-grid" id="airdropGrid">
+    <div class="airdrop-empty">Connecting to the machine…</div>
+  </div>
+</section>
+
+<!-- ================= COMPARISON ================= -->
+<section class="section compare">
+  <div class="section__head reveal">
+    <span class="kicker">An Honest Comparison</span>
+    <h2 class="section__title">Your Trading Account<br>vs. <span class="hl">A Job at McDonald's</span></h2>
+  </div>
+  <div class="compare__table reveal">
+    <div class="compare__row compare__row--head">
+      <div class="compare__cell"></div>
+      <div class="compare__cell compare__cell--bad">📉 Your Portfolio</div>
+      <div class="compare__cell compare__cell--good">🍟 $JOB / McDonald's</div>
+    </div>
+    <div class="compare__row">
+      <div class="compare__cell compare__feat">Monthly income</div>
+      <div class="compare__cell compare__cell--bad">−$4,200 (you paid fees to lose)</div>
+      <div class="compare__cell compare__cell--good">A real, actual paycheck ✅</div>
+    </div>
+    <div class="compare__row">
+      <div class="compare__cell compare__feat">Working hours</div>
+      <div class="compare__cell compare__cell--bad">24/7 staring at red candles</div>
+      <div class="compare__cell compare__cell--good">A scheduled shift ✅</div>
+    </div>
+    <div class="compare__row">
+      <div class="compare__cell compare__feat">Free food</div>
+      <div class="compare__cell compare__cell--bad">Ramen, again</div>
+      <div class="compare__cell compare__cell--good">Crew meal 🍔 ✅</div>
+    </div>
+    <div class="compare__row">
+      <div class="compare__cell compare__feat">Health insurance</div>
+      <div class="compare__cell compare__cell--bad">"It's called diamond hands"</div>
+      <div class="compare__cell compare__cell--good">Yes ✅</div>
+    </div>
+    <div class="compare__row">
+      <div class="compare__cell compare__feat">Your mom's opinion</div>
+      <div class="compare__cell compare__cell--bad">"When are you getting a real job?"</div>
+      <div class="compare__cell compare__cell--good">Proud of you ✅</div>
+    </div>
+    <div class="compare__row">
+      <div class="compare__cell compare__feat">Liquidation risk</div>
+      <div class="compare__cell compare__cell--bad">Catastrophic, hourly</div>
+      <div class="compare__cell compare__cell--good">None. You're employed ✅</div>
+    </div>
+  </div>
+  <p class="compare__verdict reveal">The data is in. <span class="hl">Get a job.</span></p>
+</section>
+
+<!-- ================= TOKENOMICS ================= -->
+<section class="section tokenomics" id="tokenomics">
+  <div class="section__head reveal">
+    <span class="kicker">The Value Menu</span>
+    <h2 class="section__title"><span class="hl">Tokenomics</span></h2>
+    <p class="section__lead">Cheaper than a McChicken. Fair launch, LP burned, mint revoked. No hidden manager taking from the register.</p>
+  </div>
+
+  <div class="tokenomics__grid">
+    <div class="value-card reveal">
+      <span class="value-card__price">1B</span>
+      <span class="value-card__label">Total Supply</span>
+      <span class="value-card__sub">$JOB · fixed forever</span>
+    </div>
+    <div class="value-card reveal">
+      <span class="value-card__price">0 / 0</span>
+      <span class="value-card__label">Buy / Sell Tax</span>
+      <span class="value-card__sub">we don't dock your pay</span>
+    </div>
+    <div class="value-card reveal">
+      <span class="value-card__price">🔥</span>
+      <span class="value-card__label">Liquidity</span>
+      <span class="value-card__sub">burned — no take-backs</span>
+    </div>
+    <div class="value-card reveal">
+      <span class="value-card__price">🚫</span>
+      <span class="value-card__label">Mint Authority</span>
+      <span class="value-card__sub">revoked — no extra fries</span>
+    </div>
+  </div>
+
+  <div class="alloc reveal">
+    <h3 class="alloc__title">Where the bag goes</h3>
+    <div class="alloc__bars">
+      <div class="alloc__bar"><span class="alloc__name">Fair launch liquidity</span><div class="alloc__track"><div class="alloc__fill" style="--w:90%"><span>90%</span></div></div></div>
+      <div class="alloc__bar"><span class="alloc__name">CEX listings & marketing</span><div class="alloc__track"><div class="alloc__fill alloc__fill--2" style="--w:5%"><span>5%</span></div></div></div>
+      <div class="alloc__bar"><span class="alloc__name">Team (the "Manager")</span><div class="alloc__track"><div class="alloc__fill alloc__fill--3" style="--w:5%"><span>5%</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CAREER PATH / ROADMAP ================= -->
+<section class="section career" id="career">
+  <div class="section__head reveal">
+    <span class="kicker">The Roadmap = Your Career Path</span>
+    <h2 class="section__title">From <span class="hl">Crew Member</span> to CEO 🧑‍🍳</h2>
+    <p class="section__lead">Every great franchise owner started on fries. Here's the promotion ladder.</p>
+  </div>
+
+  <ol class="career__ladder">
+    <li class="career__step reveal">
+      <span class="career__rank">★</span>
+      <div class="career__body">
+        <h3>Phase 1 — Crew Member (Trainee)</h3>
+        <p>Fair launch on Solana. Mint &amp; freeze revoked, LP burned. Website goes live (you're looking at it). First 1,000 holders clock in. Mop the floors, learn the fryer.</p>
+      </div>
+    </li>
+    <li class="career__step reveal">
+      <span class="career__rank">★★</span>
+      <div class="career__body">
+        <h3>Phase 2 — Shift Manager</h3>
+        <p>CoinGecko &amp; CoinMarketCap listings. Trending on Dexscreener. 10,000 holders. Meme army deployed. You've got the keys to the lobby now.</p>
+      </div>
+    </li>
+    <li class="career__step reveal">
+      <span class="career__rank">★★★</span>
+      <div class="career__body">
+        <h3>Phase 3 — Franchise Owner</h3>
+        <p>Tier-1 CEX listings. 50,000 holders. Official crew merch (yes, the uniform). Community treasury + the $JOB job board. You own the store.</p>
+      </div>
+    </li>
+    <li class="career__step reveal">
+      <span class="career__rank">★★★★</span>
+      <div class="career__body">
+        <h3>Phase 4 — CEO</h3>
+        <p>McDonald's notices us (cease &amp; desist framed on the wall). Real-world $JOB McFlurry collab attempt. Generational wealth or a generational fry cook — there is no in-between. <strong>Ba da ba ba ba.</strong></p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= HOW TO BUY ================= -->
+<section class="section buy" id="buy">
+  <div class="section__head reveal">
+    <span class="kicker">Onboarding — How to Clock In</span>
+    <h2 class="section__title">How to <span class="hl">Buy $JOB</span></h2>
+    <p class="section__lead">Four steps. Easier than a job interview, and they actually called you back.</p>
+  </div>
+
+  <div class="buy__steps">
+    <div class="step reveal">
+      <span class="step__num">1</span>
+      <h3>Get a wallet</h3>
+      <p>Download <strong>Phantom</strong> (or Solflare). It's free, like your time now that you're unemployed.</p>
+    </div>
+    <div class="step reveal">
+      <span class="step__num">2</span>
+      <h3>Fund it with SOL</h3>
+      <p>Buy SOL on any exchange and send it to your wallet. Even $1 of dignity will do.</p>
+    </div>
+    <div class="step reveal">
+      <span class="step__num">3</span>
+      <h3>Swap for $JOB</h3>
+      <p>Open <strong>Jupiter</strong> or <strong>Raydium</strong>, paste the official contract address, and swap your SOL.</p>
+    </div>
+    <div class="step reveal">
+      <span class="step__num">4</span>
+      <h3>Clock in</h3>
+      <p>Hold $JOB. Congratulations — you're employed. Tell your mom.</p>
+    </div>
+  </div>
+
+  <div class="buy__cta reveal">
+    <div class="ca" id="caBox2" title="Click to copy">
+      <span class="ca__label">CA</span>
+      <code class="ca__value" id="caValue2">COMING SOON — DON'T BUY A FAKE, SER</code>
+      <button class="ca__copy" id="caCopy2" aria-label="Copy contract address">COPY</button>
+    </div>
+    <div class="buy__links">
+      <a href="#" class="btn btn--buy btn--lg" data-link="raydium">Buy on Raydium</a>
+      <a href="#" class="btn btn--ghost btn--lg" data-link="dexscreener">Chart on Dexscreener</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section faq" id="faq">
+  <div class="section__head reveal">
+    <span class="kicker">Employee Handbook</span>
+    <h2 class="section__title"><span class="hl">FAQ</span></h2>
+  </div>
+  <div class="faq__list reveal">
+    <details class="faq__item">
+      <summary>Is this affiliated with McDonald's?</summary>
+      <p>No. $JOBCOIN is an independent meme and is not affiliated with, endorsed by, or sponsored by McDonald's Corporation. We're a parody. We just want you to be okay.</p>
+    </details>
+    <details class="faq__item">
+      <summary>Do I actually receive McDonald's stock?</summary>
+      <p>No. You receive $JOB and emotional support. "McDonald's stock" is the joke — the real deliverable is a renewed sense of purpose and maybe a name tag.</p>
+    </details>
+    <details class="faq__item">
+      <summary>Is this financial advice?</summary>
+      <p>It is the precise opposite of financial advice. $JOB is a meme coin with no intrinsic value, no roadmap to the moon, and no promises. Only risk what you can afford to lose — which, let's be honest, isn't much right now.</p>
+    </details>
+    <details class="faq__item">
+      <summary>Why McDonald's?</summary>
+      <p>Because it's hiring and you're not. It's the universal symbol of "okay, the trade didn't work, let's go get a real one."</p>
+    </details>
+    <details class="faq__item">
+      <summary>Is the liquidity locked?</summary>
+      <p>Burned. Mint authority revoked. We can't pull the rug because we set it on fire. The only thing getting cooked here is the fries.</p>
+    </details>
+    <details class="faq__item">
+      <summary>Wen Lambo?</summary>
+      <p>Wen shift. Pick up a double on Saturday and we'll talk.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ================= COMMUNITY ================= -->
+<section class="section community">
+  <div class="section__head reveal">
+    <span class="kicker">The Break Room</span>
+    <h2 class="section__title">Join the <span class="hl">Crew</span> 🧑‍🍳</h2>
+    <p class="section__lead">Misery loves company. So does the lunch rush.</p>
+  </div>
+  <div class="community__links reveal">
+    <a href="#" class="social" data-link="twitter"><span class="social__icon">𝕏</span><span>Twitter / X</span></a>
+    <a href="#" class="social" data-link="telegram"><span class="social__icon">✈</span><span>Telegram</span></a>
+    <a href="#" class="social" data-link="dexscreener"><span class="social__icon">📊</span><span>Dexscreener</span></a>
+    <a href="#" class="social" data-link="raydium"><span class="social__icon">🪙</span><span>Raydium</span></a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer__big">GET. A. JOB.</div>
+  <img src="assets/img/logo.png" alt="JOBCOIN" class="footer__logo" />
+  <p class="footer__tag">$JOBCOIN — the leading network of tokenized employment. Ba da ba ba ba.</p>
+  <p class="footer__disclaimer">
+    <strong>Disclaimer:</strong> $JOBCOIN is a community meme coin created for entertainment.
+    It is <strong>not affiliated with, endorsed by, or sponsored by McDonald's Corporation</strong> or any of its
+    subsidiaries. All trademarks belong to their respective owners and are used here for parody and commentary.
+    $JOB has no intrinsic value and no expectation of financial return. Nothing on this site is financial advice.
+    You will not receive McDonald's stock, equity, a McFlurry, or a Happy Meal. Cryptocurrency is volatile and
+    risky — only spend what you can afford to lose. Do your own research. Then, ideally, get a job.
+  </p>
+  <p class="footer__copy">© 2026 JOBCOIN. Made with 🍟 and regret on Solana.</p>
+</footer>
+
+<!-- ================= TOAST ================= -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

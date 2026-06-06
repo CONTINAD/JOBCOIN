@@ -58,7 +58,9 @@ export function startDashboard() {
     res.json(tracker.getHolderSummary(addr));
   });
 
-  app.get("/", (_req: Request, res: Response) => {
+  // The bot's own live dashboard lives at /dashboard — the website's index.html
+  // (copied into public/) is what serves at /.
+  app.get("/dashboard", (_req: Request, res: Response) => {
     res.set("Content-Type", "text/html; charset=utf-8").send(renderHTML());
   });
 
